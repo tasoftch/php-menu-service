@@ -58,9 +58,17 @@ interface MenuItemInterface
     /**
      * Get the menu this items belongs to
      *
-     * @return MenuInterface
+     * @return MenuInterface|null
      */
-    public function getMenu(): MenuInterface;
+    public function getMenu(): ?MenuInterface;
+
+    /**
+     * Sets a menu.
+     *
+     * @param MenuInterface $menu
+     * @return void
+     */
+    public function setMenu(?MenuInterface $menu);
 
     /**
      * Get the submenu of that item
@@ -72,7 +80,6 @@ interface MenuItemInterface
     /**
      * Sets a sub menu
      * This method should maintain consistency:
-     * MenuItem's submenu > Menu <=> Menu's parent item > MenuItem
      *
      * @param MenuInterface|null $subMenu
      * @return void

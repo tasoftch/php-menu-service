@@ -60,6 +60,21 @@ interface MenuInterface
     public function getMenuItems(): array;
 
     /**
+     * Add a menu item
+     *
+     * @param MenuItemInterface $item
+     * @return static
+     */
+    public function addItem(MenuItemInterface $item);
+
+    /**
+     * Removes an item from menu
+     *
+     * @param MenuItemInterface $item
+     */
+    public function removeItem(MenuItemInterface $item);
+
+    /**
      * Get a parent menu item
      *
      * @return MenuItemInterface|null
@@ -68,8 +83,6 @@ interface MenuInterface
 
     /**
      * Set a parent item
-     * This method should maintain consistency:
-     * MenuItem's submenu > Menu <=> Menu's parent item > MenuItem
      *
      * @param MenuItemInterface|null $item
      * @return void
