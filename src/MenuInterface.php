@@ -55,7 +55,7 @@ interface MenuInterface
     /**
      * Return a list with all contained menu items (ordered!)
      *
-     * @return array
+     * @return MenuItemInterface[]
      */
     public function getMenuItems(): array;
 
