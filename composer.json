@@ -1,5 +1,5 @@
 {
-  "name": "tasoft/phpstorm-template",
+  "name": "tasoft/menu-service",
   "license": "MIT",
   "authors": [
     {
@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "TASoft\\" : "src"
+      "TASoft\\MenuService\\" : "src"
     }
   },
   "require" : {
