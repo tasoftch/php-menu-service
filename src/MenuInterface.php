@@ -64,5 +64,15 @@ interface MenuInterface
      *
      * @return MenuItemInterface|null
      */
-    public function getMenuItem(): ?MenuItemInterface;
+    public function getParentItem(): ?MenuItemInterface;
+
+    /**
+     * Set a parent item
+     * This method should maintain consistency:
+     * MenuItem's submenu > Menu <=> Menu's parent item > MenuItem
+     *
+     * @param MenuItemInterface|null $item
+     * @return void
+     */
+    public function setParentItem(?MenuItemInterface $item);
 }
