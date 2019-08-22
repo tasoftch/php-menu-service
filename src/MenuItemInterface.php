@@ -55,6 +55,34 @@ interface MenuItemInterface
      */
     public function getAction(): ?ActionInterface;
 
+
+    /**
+     * Returns true, if the menu item is enabled, false otherwise
+     * @return bool
+     */
+    public function isEnabled(): bool;
+
+    /**
+     * Set the menu item enabled or disabled
+     * @param bool $flag
+     * @return void
+     */
+    public function setEnabled(bool $flag);
+
+    /**
+     * Returns true, if the menu item is selected
+     * @return bool
+     */
+    public function isSelected(): bool;
+
+    /**
+     * Selects the menu item
+     *
+     * @param bool $flag
+     * @return void
+     */
+    public function setSelected(bool $flag);
+
     /**
      * Get the menu this items belongs to
      *
