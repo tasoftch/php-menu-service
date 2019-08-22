@@ -114,7 +114,7 @@ class MenuConsistencyTest extends TestCase
         $this->assertSame([$item1, $item2, $item3, $item4], $menu->getMenuItems());
         $this->assertSame($menu, $item3->getMenu());
 
-        $menu->removeItem($item3);
+        $menu->removeItemAtIndex(2);
         $this->assertSame([$item1, $item2, $item4], $menu->getMenuItems());
 
         $this->assertNull($item3->getMenu());
