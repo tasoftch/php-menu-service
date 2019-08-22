@@ -27,6 +27,7 @@ namespace TASoft\MenuService;
 use ArrayAccess;
 use Countable;
 use InvalidArgumentException;
+use TASoft\MenuService\Exception\RecursiveMenuTreeException;
 
 class Menu implements MenuInterface, Countable, ArrayAccess
 {
@@ -121,6 +122,16 @@ class Menu implements MenuInterface, Countable, ArrayAccess
             $this->parentItem = $menuItem;
             if($menuItem)
                 $menuItem->setSubmenu($this);
+
+            while($menuItem && $pMenu = $menuItem->getMenu()) {
+                if($pMenu === $this) {
+                    $e = new RecursiveMenuTreeException("Can not set parent item because of recursion", 77);
+                    $e->setSubmenu($this);
+                    $e->setMenuItem($menuItem);
+                    throw $e;
+                }
+                $menuItem = $pMenu->getParentItem();
+            }
         }
     }
 

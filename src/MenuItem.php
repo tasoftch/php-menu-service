@@ -46,6 +46,43 @@ class MenuItem implements MenuItemInterface
     /** @var int */
     private $tag;
 
+    /** @var bool */
+    private $enabled = true;
+
+    private $selected = false;
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSelected(): bool
+    {
+        return $this->selected;
+    }
+
+    /**
+     * @param bool $selected
+     */
+    public function setSelected(bool $selected): void
+    {
+        $this->selected = $selected;
+    }
+
     /**
      * MenuItem constructor.
      * @param string $identifier
@@ -76,7 +113,7 @@ class MenuItem implements MenuItemInterface
     /**
      * @return ActionInterface
      */
-    public function getAction(): ActionInterface
+    public function getAction(): ?ActionInterface
     {
         return $this->action;
     }

@@ -123,4 +123,17 @@ class MenuConsistencyTest extends TestCase
         $this->assertSame([$item2, $item4], $menu->getMenuItems());
         $this->assertNull($item1->getMenu());
     }
+
+    /**
+     * @expectedException TASoft\MenuService\Exception\RecursiveMenuTreeException
+     */
+    public function testRecursion() {
+        $menu = new Menu("menu");
+        $menu->addItem($item1 = new MenuItem("item1"))
+            ->addItem($item2 = new MenuItem("item2"))
+            ->addItem($item3 = new MenuItem("item3"))
+            ->addItem($item4 = new MenuItem("item4"));
+
+        $item4->setSubmenu($menu);
+    }
 }
