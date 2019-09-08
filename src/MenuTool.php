@@ -75,7 +75,7 @@ abstract class MenuTool
         $handler = function(MenuInterface $menu, bool $deselectAll = false) use ($actionVersion, $options, &$handler) {
             foreach($menu->getMenuItems() as $menuItem) {
                 if($action = $menuItem->getAction()) {
-                    if(!$deselectAll && $action->matchActionVersion($actionVersion)) {
+                    if($action->matchActionVersion($actionVersion)) {
                         if($options & self::SEL_OPTION_LEAF_ONLY && !$menuItem->getSubmenu()) {} else {
                             $menuItem->setSelected(true);
                             if($options & self::SEL_OPTION_BACKWARD) {
