@@ -84,9 +84,10 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @param string $title
      */
-    public function setTitle(string $title): void
+    public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -100,9 +101,10 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @param bool $hidden
      */
-    public function setHidden(bool $hidden): void
+    public function setHidden(bool $hidden)
     {
         $this->hidden = $hidden;
+        return $this;
     }
 
     /**
@@ -116,7 +118,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @param MenuItemInterface|null $menuItem
      */
-    public function setParentItem(?MenuItemInterface $menuItem): void
+    public function setParentItem(?MenuItemInterface $menuItem)
     {
         if($this->parentItem !== $menuItem) {
             $this->parentItem = $menuItem;
@@ -133,6 +135,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
                 $menuItem = $pMenu->getParentItem();
             }
         }
+        return $this;
     }
 
     /**

@@ -62,9 +62,10 @@ class MenuItem implements MenuItemInterface
     /**
      * @param bool $enabled
      */
-    public function setEnabled(bool $enabled): void
+    public function setEnabled(bool $enabled)
     {
         $this->enabled = $enabled;
+        return $this;
     }
 
     /**
@@ -78,9 +79,10 @@ class MenuItem implements MenuItemInterface
     /**
      * @param bool $selected
      */
-    public function setSelected(bool $selected): void
+    public function setSelected(bool $selected)
     {
         $this->selected = $selected;
+        return $this;
     }
 
     /**
@@ -121,9 +123,10 @@ class MenuItem implements MenuItemInterface
     /**
      * @param ActionInterface $action
      */
-    public function setAction(ActionInterface $action): void
+    public function setAction(ActionInterface $action)
     {
         $this->action = $action;
+        return $this;
     }
 
     /**
@@ -137,12 +140,12 @@ class MenuItem implements MenuItemInterface
     /**
      * @param MenuInterface $menu
      */
-    public function setMenu(?MenuInterface $menu): void
+    public function setMenu(?MenuInterface $menu)
     {
         if(!$menu && $this->menu) {
             $this->menu->removeItem($this);
             $this->menu = NULL;
-            return;
+            return $this;
         }
 
         if($this->menu !== $menu) {
@@ -150,6 +153,7 @@ class MenuItem implements MenuItemInterface
             if($menu)
                 $menu->addItem($this);
         }
+        return $this;
     }
 
     /**
@@ -163,13 +167,14 @@ class MenuItem implements MenuItemInterface
     /**
      * @param MenuInterface|null $submenu
      */
-    public function setSubmenu(?MenuInterface $submenu): void
+    public function setSubmenu(?MenuInterface $submenu)
     {
         if($this->submenu !== $submenu) {
             $this->submenu = $submenu;
             if($submenu)
                 $submenu->setParentItem($this);
         }
+        return  $this;
     }
 
     /**
@@ -183,8 +188,9 @@ class MenuItem implements MenuItemInterface
     /**
      * @param int $tag
      */
-    public function setTag(int $tag): void
+    public function setTag(int $tag)
     {
         $this->tag = $tag;
+        return $this;
     }
 }
