@@ -74,26 +74,25 @@ abstract class MenuTool
     public static function selectMenuItem(MenuInterface $menu, string $actionVersion, int $options = self::SEL_OPTION_RECURSIVE) {
         $handler = function(MenuInterface $menu, bool $deselectAll = false) use ($actionVersion, $options, &$handler) {
             foreach($menu->getMenuItems() as $menuItem) {
-                if($action = $menuItem->getAction()) {
-                    if($action->matchActionVersion($actionVersion)) {
-                        if($options & self::SEL_OPTION_LEAF_ONLY && !$menuItem->getSubmenu()) {} else {
-                            $menuItem->setSelected(true);
-                            if($options & self::SEL_OPTION_BACKWARD) {
-                                $mi = $menuItem;
-                                while($mi->getMenu() && ($mi = $mi->getMenu()->getParentItem())) {
-                                    $mi->setSelected(true);
-                                }
-                            }
-                        }
+            	$action = $menuItem->getAction();
+				if($action && $action->matchActionVersion($actionVersion)) {
+					if($options & self::SEL_OPTION_LEAF_ONLY && !$menuItem->getSubmenu()) {} else {
+						$menuItem->setSelected(true);
+						if($options & self::SEL_OPTION_BACKWARD) {
+							$mi = $menuItem;
+							while($mi->getMenu() && ($mi = $mi->getMenu()->getParentItem())) {
+								$mi->setSelected(true);
+							}
+						}
+					}
 
-                        if($options & self::SEL_OPTION_RECURSIVE && $menuItem->getSubmenu())
-                            $handler($menuItem->getSubmenu());
-                    } else {
-                        $menuItem->setSelected(false);
-                        if($options & self::SEL_OPTION_RECURSIVE && $menuItem->getSubmenu())
-                            $handler($menuItem->getSubmenu(), $options & self::SEL_OPTION_FLOW ? false : true);
-                    }
-                }
+					if($options & self::SEL_OPTION_RECURSIVE && $menuItem->getSubmenu())
+						$handler($menuItem->getSubmenu());
+				} else {
+					$menuItem->setSelected(false);
+					if($options & self::SEL_OPTION_RECURSIVE && $menuItem->getSubmenu())
+						$handler($menuItem->getSubmenu(), $options & self::SEL_OPTION_FLOW ? false : true);
+				}
             }
         };
         $handler($menu);
