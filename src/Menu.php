@@ -141,7 +141,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @inheritDoc
      */
-    public function count()
+    public function count(): int
     {
         return count($this->menuItems);
     }
@@ -149,7 +149,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         if(is_numeric($offset))
             return isset($this->menuItems[$offset]);
@@ -161,7 +161,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if(is_numeric($offset))
             return $this->menuItems[$offset] ?? NULL;
@@ -173,7 +173,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         throw new InvalidArgumentException("Can not modify menu using array access.");
     }
@@ -181,7 +181,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         throw new InvalidArgumentException("Can not modify menu using array access.");
     }
@@ -262,7 +262,7 @@ class Menu implements MenuInterface, Countable, ArrayAccess
      */
     public function getIndexOfItemWithTag($tag) {
         for($e=0;$e < $this->count();$e++) {
-            if($this->menuItems[$e]->tag == $tag)
+            if($this->menuItems[$e]->getTag() == $tag)
                 return $e;
         }
         return -1;

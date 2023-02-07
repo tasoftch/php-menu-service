@@ -166,7 +166,7 @@ class MenuToolTest extends TestCase
 
         $item1->setAction(new RegexStringAction("", "%^/my%i"));
         $item2->setAction(new RegexStringAction("", "%^/other/(url|txt)%i"));
-        $item3->setAction(new RegexStringAction("", "%^/my/stuff/%i"));
+        $item3->setAction(new RegexStringAction("", "%^/my/stuff/?%i"));
         $item4->setAction(new RegexStringAction("", "%^/(my|you)/(most|here)/%i"));
 
 

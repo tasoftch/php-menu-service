@@ -134,6 +134,7 @@ class MenuConsistencyTest extends TestCase
             ->addItem($item3 = new MenuItem("item3"))
             ->addItem($item4 = new MenuItem("item4"));
 
+		$this->expectException(\TASoft\MenuService\Exception\RecursiveMenuTreeException::class);
         $item4->setSubmenu($menu);
     }
 }
